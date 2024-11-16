@@ -6,6 +6,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import cn.hutool.crypto.asymmetric.RSA;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -28,7 +30,10 @@ public class Genconfig {
         RSA rsa = SecureUtil.rsa(kb, pb);
         String json = ResourceUtil.readUtf8Str(StrUtil.format("local/{}.json", config));
         String ejson = rsa.encryptBase64(json, KeyType.PublicKey);
-        File file = FileUtil.writeBytes(ejson.getBytes(StandardCharsets.UTF_8), StrUtil.format("{}/{}.txt", System.getProperty("user.dir"), config));
+        JSONObject jo = new JSONObject();
+        jo.set("code", 0);
+        jo.set("data", ejson);
+        File file = FileUtil.writeBytes(jo.toStringPretty().getBytes(StandardCharsets.UTF_8), StrUtil.format("{}/{}.txt", System.getProperty("user.dir"), config));
         System.out.println("update -> " + file.getAbsoluteFile());
     }
 
