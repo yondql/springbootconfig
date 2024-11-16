@@ -14,6 +14,8 @@ import java.util.Base64;
 public class Genconfig {
 
     public static void main(String[] args) throws Exception {
+
+
         writeConfig("ydsjyzmch");
         writeConfig("ydsjyzmru");
     }
@@ -26,13 +28,17 @@ public class Genconfig {
         RSA rsa = SecureUtil.rsa(kb, pb);
         String json = ResourceUtil.readUtf8Str(StrUtil.format("local/{}.json", config));
         String ejson = rsa.encryptBase64(json, KeyType.PublicKey);
-
         File file = FileUtil.writeBytes(ejson.getBytes(StandardCharsets.UTF_8), StrUtil.format("{}/{}.txt", System.getProperty("user.dir"), config));
-        System.out.println(file.getAbsoluteFile());
+        System.out.println("update -> " + file.getAbsoluteFile());
+    }
 
-        System.out.println(ejson);
-        byte[] dbytes = rsa.decrypt(Base64.getDecoder().decode(ejson), KeyType.PrivateKey);
-        System.out.println(new String(dbytes));
+
+    static void genKeyPair() {
+        //
+//        KeyPair keyPair = SecureUtil.generateKeyPair("RSA", 2048);
+//
+//        System.out.println(Base64.getEncoder().encodeToString(keyPair.getPrivate().getEncoded()));
+//        System.out.println(Base64.getEncoder().encodeToString(keyPair.getPublic().getEncoded()));
     }
 
 }
