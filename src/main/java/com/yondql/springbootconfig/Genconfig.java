@@ -16,12 +16,7 @@ import java.util.Base64;
 public class Genconfig {
 
     public static void main(String[] args) throws Exception {
-
-
-
-
-        writeConfig("ydsjyzmch");
-        writeConfig("ydsjyzmru");
+        writeConfig("ydsjyzm");
     }
 
     static void writeConfig(String config) {
