@@ -18,6 +18,8 @@ public class Genconfig {
     public static void main(String[] args) throws Exception {
         writeConfig("ydsjyzm");
         writeConfig("ydsjyzmdev");
+
+        System.out.println(123);
     }
 
     static void writeConfig(String config) {
