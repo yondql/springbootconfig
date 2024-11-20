@@ -16,7 +16,8 @@ import java.util.Base64;
 public class Genconfig {
 
     public static void main(String[] args) throws Exception {
-        writeConfig("ydsjyzm");
+//        writeConfig("ydsjyzm");
+        writeConfig("ydsjyzmdev");
     }
 
     static void writeConfig(String config) {
